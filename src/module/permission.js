@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const checkPermission = (permission) => {
@@ -59,8 +60,17 @@ const checkPermissionForCoarseLocation = () => {
   checkPermission(PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION);
 };
 
+const checkPermissionForFineLocation = () => {
+  const permission = Platform.select({
+    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+  });
+  checkPermission(permission);
+};
+
 export default {
   checkPermission,
   requestPermission,
   checkPermissionForCoarseLocation,
+  checkPermissionForFineLocation,
 };
