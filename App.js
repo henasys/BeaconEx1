@@ -4,7 +4,7 @@ import {View, Text, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// import BeaconRangingOnly from './src/module/beacon';
+import BeaconRangingOnly from './src/module/beacon';
 
 function HomeScreen({navigation}) {
   return (
@@ -25,7 +25,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        {/* <Stack.Screen name="Beacon" component={BeaconRangingOnly} /> */}
+        <Stack.Screen name="Beacon" component={BeaconRangingOnly} />
       </Stack.Navigator>
     </NavigationContainer>
   );
