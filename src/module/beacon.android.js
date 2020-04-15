@@ -5,6 +5,7 @@ import Beacons from 'react-native-beacons-manager';
 
 import {beacon} from '../module/constant';
 import BeaconList from '../view/beaconList';
+import Permission from '../module/permission';
 
 export default class BeaconRangingOnly extends Component {
   beaconsDidRangeEvent = null;
@@ -16,6 +17,7 @@ export default class BeaconRangingOnly extends Component {
 
   componentDidMount() {
     console.log('beacon componentDidMount');
+    Permission.checkPermissionForCoarseLocation();
     this._isMounted = true;
     // Beacons.setForegroundScanPeriod(5000);
     Beacons.detectIBeacons();
