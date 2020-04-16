@@ -164,14 +164,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		43D190C92448363100A152B5 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				4CE6F041E5AC4B678F41D47D /* libRNiBeacon.a */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +180,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				326BDC49BEF5DF307A81D824 /* Pods */,
-				43D190C92448363100A152B5 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
