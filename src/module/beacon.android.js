@@ -17,38 +17,39 @@ export default class BeaconRangingOnly extends Component {
 
   componentDidMount() {
     console.log('beacon componentDidMount');
-    Permission.checkPermissionForCoarseLocation();
-    this._isMounted = true;
-    // Beacons.setForegroundScanPeriod(5000);
-    Beacons.detectIBeacons()
-      .then(() => {
-        return Beacons.startRangingBeaconsInRegion(
-          beacon.identifier,
-          beacon.uuid,
+    Permission.checkPermissionForCoarseLocation(() => {
+      this._isMounted = true;
+      // Beacons.setForegroundScanPeriod(5000);
+      Beacons.detectIBeacons()
+        .then(() => {
+          return Beacons.startRangingBeaconsInRegion(
+            beacon.identifier,
+            beacon.uuid,
+          );
+        })
+        .then(() =>
+          console.log('Beacons ranging started succesfully', Platform.OS),
+        )
+        .catch(error =>
+          console.log(
+            `Beacons ranging not started, error: ${error}`,
+            Platform.OS,
+          ),
         );
-      })
-      .then(() =>
-        console.log('Beacons ranging started succesfully', Platform.OS),
-      )
-      .catch(error =>
-        console.log(
-          `Beacons ranging not started, error: ${error}`,
-          Platform.OS,
-        ),
-      );
-    this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
-      'beaconsDidRange',
-      data => {
-        console.log('beaconsDidRange data:', Platform.OS, data);
-        if (data.beacons && data.beacons.length > 0) {
-          if (this._isMounted) {
-            this.setState({
-              list: data.beacons,
-            });
+      this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
+        'beaconsDidRange',
+        data => {
+          console.log('beaconsDidRange data:', Platform.OS, data);
+          if (data.beacons && data.beacons.length > 0) {
+            if (this._isMounted) {
+              this.setState({
+                list: data.beacons,
+              });
+            }
           }
-        }
-      },
-    );
+        },
+      );
+    });
   }
 
   componentWillUnmount() {
