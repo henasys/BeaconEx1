@@ -20,8 +20,13 @@ export default class BeaconRangingOnly extends Component {
     Permission.checkPermissionForCoarseLocation();
     this._isMounted = true;
     // Beacons.setForegroundScanPeriod(5000);
-    Beacons.detectIBeacons();
-    Beacons.startRangingBeaconsInRegion(beacon.identifier, beacon.uuid)
+    Beacons.detectIBeacons()
+      .then(() => {
+        return Beacons.startRangingBeaconsInRegion(
+          beacon.identifier,
+          beacon.uuid,
+        );
+      })
       .then(() =>
         console.log('Beacons ranging started succesfully', Platform.OS),
       )
